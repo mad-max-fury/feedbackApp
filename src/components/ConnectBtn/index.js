@@ -23,9 +23,9 @@ span{
 }
  &:hover{
    transition:all 0.2s ease-in;
- 
-      width:12.8rem;
- height:2.8rem;
+   width:12.8rem;
+   height:2.8rem;
    background:#c75af6;
  }
+ 
 `

@@ -11,7 +11,7 @@ const Feedback = () => {
       <FeedBackMessage />
     </div>
     <CommentCount >
-      <span className='commentIcon'><i class="fas fa-comment"></i></span>
+      <span className='commentIcon'><i className="fas fa-comment"></i></span>
       <span className='count'>2</span>
     </CommentCount>
   </FeedbackWrapper>;
@@ -37,7 +37,7 @@ const FeedbackWrapper = styled.div`
    display:flex;
    gap:2rem;
  }
- @media screen and (max-width:800px){
+ @media screen and (max-width:939px){
    position:relative;
     width:80vw;
     .firstWrap{

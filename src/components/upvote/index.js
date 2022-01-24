@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 const Upvote = () => {
   return <UpvoteWrapper>
-    <i class="fas fa-angle-up"></i>
+    <i className="fas fa-angle-up"></i>
     <span>123</span>
-  </UpvoteWrapper>
+  </UpvoteWrapper >
 };
 
 export default Upvote;

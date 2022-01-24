@@ -14,7 +14,7 @@ const Home = () => {
       <div className='feedContainer'>
         {
           ['a', 'a', 1, 3, 3, 7].map(el => {
-            return <Feedback />
+            return <Feedback key={Math.random()} />
           })
         }
       </div>
@@ -30,7 +30,17 @@ const HomeWrapper = styled.div`
  max-width:1200px;
  margin: 5rem auto 0 auto;
  gap:2rem;
+ padding-bottom:2rem;
+
  
+   @media (max-width:939px){
+   flex-direction:column;
+   margin:auto;
+   width:100%;
+  }
+  @media screen and (max-width:770px){
+    gap:0;
+  }
 
  .feedContainer{
    margin-top:1rem;
@@ -38,11 +48,18 @@ const HomeWrapper = styled.div`
    flex-direction:column;
    gap:1rem;
  }
-  @media (max-width:700px){
-   flex-direction:column;
-   padding: 0 2rem;
-   margin:0;
-   width:100vw;
-   border:1px solid yellow;
+ & > div{
+   &:first-of-type{
+      @media screen and (max-width:939px) and (min-width:771px){
+      //  border:1px solid black;
+       display:flex;
+       align-items:center;
+       justify-content:center;
+       padding-top:2rem;
+
+      }
+   }
+   
  }
+
 `

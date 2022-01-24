@@ -26,10 +26,12 @@ const AsideWidget = () => {
     </div>
     <div style={{
       backgroundImage: `url("/images/bgH.png")`
+      , backgroundRepeat: 'no-repeat', backgroundSize: 'cover',
+      padding: '1rem'
     }} className='smallScreen'>
       <Banner style={{
         width: 'unset',
-        height: '3rem',
+        height: 'fit-content',
         padding: 'unset',
         borderRadius: 'unset'
       }}>
@@ -38,7 +40,7 @@ const AsideWidget = () => {
           <span>Feedback Board</span>
         </span>
       </Banner>
-      <i class="fas fa-bars" style={{ color: '#fff' }}></i>
+      <i className="fas fa-bars fa-3x" style={{ color: '#fff' }}></i>
       <div style={{ display: 'none' }}>
         <div className='flex-col'>
           <div className='login'>
@@ -60,7 +62,7 @@ const AsideWidgetWrap = styled.aside`
 
   @media screen and (max-width:769px){
     width:100vw;
-    border:1px solid green;
+    // border:1px solid green;
   }
 .bigScreen{
   display:flex;
@@ -94,8 +96,15 @@ const AsideWidgetWrap = styled.aside`
   justify-content:space-between;
   padding:0 1rem;
   height:fit-content;
-  border:1px solid red;
+  // border:1px solid red;
+  @media screen and (min-width:770px){
+    // border:1px solid green;
+    display:none;
+
+
+  }
 }
+
 `
 
 const Banner = styled.div`
@@ -103,7 +112,7 @@ const Banner = styled.div`
  height:6rem;
  padding:20px;
  border-radius:10px;
- 
+
  background:contain no-repeat;
  display:flex;
  justify-content:space-between;

@@ -6,7 +6,7 @@ const CategoryWidget = () => {
   return <CateWidWrapper>
     {
       category.map(el => {
-        return <button><span>{el}</span></button>
+        return <button key={Math.random()}><span>{el}</span></button>
       })
     }
   </CateWidWrapper>;
