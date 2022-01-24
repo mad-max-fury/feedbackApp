@@ -1,4 +1,4 @@
-<h1 align="center">sneaker e-commerce</h1>
+<h1 align="center">Feedback App</h1>
 <br>
 <h3 align="center"> 🚧  The platform is still under development 🚧 </h3>
 
