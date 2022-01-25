@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { colors } from '../../colors';
 import CategoryWidget from '../../components/categorywidget';
@@ -6,6 +6,10 @@ import ConnectBtn from '../../components/ConnectBtn';
 import RoadMap from '../../components/roadmap';
 
 const AsideWidget = () => {
+
+  const [style, setStyle] = useState({ display: 'none', opacity: '0' })
+  const handleHamburgerMenu = () => setStyle({ display: 'flex', opacity: '1' })
+  const closeHamburgerMenu = () => setStyle({ display: 'none', opacity: '0' })
   return <AsideWidgetWrap>
     <div className='bigScreen'>
       <div className='flex-col'>
@@ -25,9 +29,8 @@ const AsideWidget = () => {
       <RoadMap />
     </div>
     <div style={{
-      backgroundImage: `url("/images/bgH.png")`
-      , backgroundRepeat: 'no-repeat', backgroundSize: 'cover',
-      padding: '1rem'
+      padding: '1rem',
+      position: 'relative'
     }} className='smallScreen'>
       <Banner style={{
         width: 'unset',
@@ -40,15 +43,19 @@ const AsideWidget = () => {
           <span>Feedback Board</span>
         </span>
       </Banner>
-      <i className="fas fa-bars fa-3x" style={{ color: '#fff' }}></i>
-      <div style={{ display: 'none' }}>
-        <div className='flex-col'>
-          <div className='login'>
-            <ConnectBtn text={'Login'} />
-          </div>
+      {style.display === 'none' ? <i className="fas fa-bars fa-2x" style={{ color: '#fff' }} onClick={handleHamburgerMenu}></i> : <i className="fas fa-times fa-2x" style={{ color: '#fff' }} onClick={closeHamburgerMenu}></i>}
+      <div style={style} >
+        <div className='hamBurger'>
         </div>
-        <CategoryWidget />
-        <RoadMap />
+        <MenuWrapper>
+          <div className='flex-col'>
+            <div className='login'>
+              <ConnectBtn text={'Login'} />
+            </div>
+          </div>
+          <CategoryWidget />
+          <RoadMap />
+        </MenuWrapper>
       </div>
 
     </div>
@@ -59,29 +66,29 @@ export default AsideWidget;
 
 
 const AsideWidgetWrap = styled.aside`
+   
+
 
   @media screen and (max-width:769px){
     width:100vw;
-    // border:1px solid green;
+
   }
-.bigScreen{
+  .bigScreen{  
   display:flex;
   flex-direction:column;
   gap:1.5rem;
   @media screen and (max-width:769px){
     display:none;
   }
- @media screen and (max-width:939px) and (min-width:771px){
+  @media screen and (max-width:939px) and (min-width:771px){
    flex-direction:row;
    width:80w;
-  }
+   }
   .flex-col{
     display:flex;
     flex-direction:column;
     gap:1.5rem;
-    //  @media screen and (max-width:771px){
-    //    flex-direction:row;
-    //  }
+ 
   }
   .login{
     border-radius:10px;
@@ -96,15 +103,53 @@ const AsideWidgetWrap = styled.aside`
   justify-content:space-between;
   padding:0 1rem;
   height:fit-content;
-  // border:1px solid red;
+  background: radial-gradient(128.88% 128.88% at 103.9% -10.39%, rgb(232, 77, 112) 0%, rgb(163, 55, 246) 53.09%, rgb(40, 167, 237) 100%);
   @media screen and (min-width:770px){
-    // border:1px solid green;
     display:none;
+  }
+  .hamBurger{
+    position:absolute;
+    height:90.5vh;
+    // border:1px solid red;
+    width:100%;
+    left:0%;
+    top:9.5vh;
+    z-index:50;
+    background:#333333;
+    opacity:0.8;
+    display:flex;
+    align-items:flex-end;
+    justify-content:end;
 
-
+  }
+    .fade-in {
+    transition: opacity 2s ease;
+  }
+  .fade-out{
+    opacity:0;
+    transition: opacity 2s ease;
   }
 }
 
+`
+const MenuWrapper = styled.div`
+  transition:all 0.4s ease-in-out;
+  width:fit-content;
+  padding:1rem;
+  background:${colors.general_bg};
+  height:89vh;
+  display:flex;
+  flex-direction:column;
+  gap:1rem;
+  z-index:200;
+  right:0%;
+  top:9.5vh;
+  position:absolute;
+  .login{
+    padding:1rem;
+    background:${colors.white};
+    border-radius:10px;
+  }
 `
 
 const Banner = styled.div`
