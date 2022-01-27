@@ -5,3 +5,7 @@
   height: 100%;
   /* border: 1px solid red; */
 }
+/* .input::placeholder,
+.input {
+  padding-left: 20px !important;
+} */
