@@ -4,17 +4,13 @@ import ConnectBtn from '../../components/ConnectBtn';
 import SelecteTag from '../../components/selecttag';
 const Widget = () => {
 
-
-
-
-
   return <WidgetWrapper>
     <div className='sort'>
       <span className='suggestionCount'>
         <h3><i className="far fa-lightbulb "></i> 28 Suggestions</h3>
       </span>
       <span className='sortBox'>
-        <span> Sort by :</span>  <SelecteTag />
+        <span> Sort by:</span><SelecteTag />
       </span>
     </div>
     <div className='btnWrap'>

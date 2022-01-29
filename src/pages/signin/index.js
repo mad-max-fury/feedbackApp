@@ -37,9 +37,20 @@ padding:1rem;
 background:radial-gradient(128.88% 128.88% at 103.9% -10.39%, rgb(232, 77, 112) 0%, rgb(163, 55, 246) 53.09%, rgb(40, 167, 237) 100%);
 display:flex;
 flex-direction:column;
+  @media screen and (max-width:768px){
+    // border:1px solid red;
+    padding:0;
+    width:100%;
+    height:100vh;
+  }
   & > i{
    color:${colors.white};
    width:fit-content;
+      @media screen and (max-width:768px){
+        align-self:center;
+        margin-top:1rem;
+        // border:1px solid red;
+      }
     &:hover{
       transition:all 0.3s ease-in;
       cursor:pointer;
@@ -54,14 +65,22 @@ flex-direction:column;
     border-radius:10px;
     display:flex;
     flex-direction:column;
+       @media screen and (max-width:768px){
+       padding:1rem;
+      }
     gap:1rem;
     & > div{
       display:flex;
       flex-direction:column;
       gap:1rem;
       width:350px;
-      @media and (max-width:768px){
+      @media screen and (max-width:768px){
         width:260px;
+        // border:1px solid red;
+      }
+       @media screen and (max-width:300px){
+          width:240px;
+          //  border:1px solid green;
       }
       span{
         font-weight:bold;

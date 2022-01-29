@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { colors } from '../../colors';
 import CategoryWidget from '../../components/categorywidget';
 import ConnectBtn from '../../components/ConnectBtn';
+import LoginConnect from '../../components/loginBtnConnector';
 import RoadMap from '../../components/roadmap';
 
 const AsideWidget = () => {
@@ -14,7 +15,7 @@ const AsideWidget = () => {
     <div className='bigScreen'>
       <div className='flex-col'>
         <div className='login'>
-          <ConnectBtn text={'Login'} />
+          <LoginConnect />
         </div>
         <Banner style={{
           backgroundImage: `url("/images/bgH.png")`
@@ -50,7 +51,7 @@ const AsideWidget = () => {
         <MenuWrapper>
           <div className='flex-col'>
             <div className='login'>
-              <ConnectBtn text={'Login'} />
+              <LoginConnect />
             </div>
           </div>
           <CategoryWidget />

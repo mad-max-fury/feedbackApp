@@ -25,8 +25,7 @@ export default FeedBackMessage;
 
 
 const Message = styled.div`
- .userDetails{
-
+  .userDetails{
    display:flex;
    gap:1rem;
    .avater{
