@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from '../../colors';
+
 const LoginConnect = () => {
+  const navigate = useNavigate()
   const [isLoggedIn, setIsLoggedIn] = useState(false)
-  const handleIsLoggedIn = () => setIsLoggedIn(true)
+  const handleSignInPage = () => {
+    navigate('/signin')
+  }
 
 
   return <>
     {
-      !isLoggedIn ? <BtnWrapper onClick={handleIsLoggedIn}><span>Login</span></BtnWrapper>
+      !isLoggedIn ? <BtnWrapper onClick={handleSignInPage}><span>Login</span></BtnWrapper>
         : <UserWrapper>
           <div className='userDetails'>
             <div className='avater'>

@@ -4,15 +4,20 @@ import { colors } from "../../colors";
 
 
 const DropDownContainer = styled.div`
-  width: fit-content;
+  width: ${props => props.width ? props.width : 'fit-content'} ;
   margin: 0 auto;
   position:relative;
+  border-radius:10px;
 `;
 
 const DropDownHeader = styled.div`
   font-weight: 500;
   font-size: 1rem;
   color: #3faffa;
+   border-radius:10px;
+  background: ${props => props.width ? '#EBF2FE' : null};
+  height:${props => props.height ? props.height : null};
+  width: ${props => props.width ? props.width : null};
  
 `;
 
@@ -31,7 +36,7 @@ const DropDownList = styled.ul`
   font-size: 1rem;
   font-weight: 500;
   border-radius:10px;
-  width:fit-content !important;
+  width:200% !important;
 
 
 `;
@@ -40,7 +45,7 @@ const ListItem = styled.li`
   list-style: none;
    border-bottom: 1px solid #e5e5e5;
   padding:.5rem 1rem;
-  width:10rem;
+   width: ${props => props.width ? props.width : '10rem'} ;
   &:hover{
     transition:all .4s ease-in;
     background:#f5f5f5;
@@ -51,7 +56,7 @@ const ListItem = styled.li`
 
 const options = ["Most Upvotes", "Least Upvotes", "Most Comments", "Least Comments"];
 
-export default function SelecteTag() {
+export default function SelecteTag({ style }) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -64,15 +69,15 @@ export default function SelecteTag() {
 
   return (
 
-    <DropDownContainer>
-      <DropDownHeader onClick={toggling} className="far fa-angle-down">
+    <DropDownContainer width={style?.width}>
+      <DropDownHeader width={style?.width} height={style?.height} onClick={toggling} className="far fa-angle-down">
         {selectedOption || "Most Upvotes"}
       </DropDownHeader>
       {isOpen && (
         <DropDownListContainer>
           <DropDownList>
             {options.map(option => (
-              <ListItem onClick={onOptionClicked(option)} key={Math.random()}>
+              <ListItem width={style?.width} onClick={onOptionClicked(option)} key={Math.random()}>
                 {option}
               </ListItem>
             ))}

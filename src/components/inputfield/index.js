@@ -9,9 +9,11 @@ const InputField = ({ type, placeholder }) => {
   const handleChange = ({ target }) => {
     const { value } = target
     setValue(value)
+
   }
   return <InputWrap>
-    <input type={type} placeholder={placeholder} onChange={handleChange} value={value} className='input' />
+    {type !== 'textarea' ? <input type={type ? type : 'text'} placeholder={placeholder} onChange={handleChange} value={value} className='input' />
+      : <textarea placeholder={placeholder} onChange={handleChange} value={value} ></textarea>}
   </InputWrap>;
 };
 
@@ -20,11 +22,12 @@ export default InputField;
 
 const InputWrap = styled.div`
  width:95%;
- height:3rem;
+ height:fit-content;
  border-radius:10px;
  input{
    width:100%;
    height:100%;
+   min-height: 3rem;
    color:${colors.grey_text};
    font-size:13px;
    background:#EBF2FE;
@@ -32,7 +35,17 @@ const InputWrap = styled.div`
    outline:0;
    border:none;
    cursor:pointer;
-   padding-left:1rem
-  
+   padding-left:1rem;
+ }
+ & > textarea{
+   border:none;
+   font-size:13px;
+   background:#EBF2FE;
+   width:calc(100% - 2rem) !important;
+   padding:1rem;
+   border-radius:10px;
+   height:5rem !important;
+   outline:0;
+   border:none;
  }
 `

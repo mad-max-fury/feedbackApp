@@ -2,8 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../colors';
 
-const ConnectBtn = ({ text }) => {
-  return <BtnWrapper><span>{text}</span></BtnWrapper>;
+const ConnectBtn = ({ text, OnClick }) => {
+  return <BtnWrapper onClick={() => OnClick()}><span>{text}</span></BtnWrapper>;
 };
 
 export default ConnectBtn;

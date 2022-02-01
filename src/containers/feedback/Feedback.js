@@ -1,11 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { colors } from '../../colors';
 import FeedBackMessage from '../../components/message';
 import Upvote from '../../components/upvote';
 
 const Feedback = () => {
-  return <FeedbackWrapper>
+  const navigate = useNavigate()
+  const handleFeedDetails = () => {
+    navigate('/feedbackdetails')
+  }
+  return <FeedbackWrapper onClick={handleFeedDetails}>
     <div className='firstWrap'>
       <Upvote />
       <FeedBackMessage />

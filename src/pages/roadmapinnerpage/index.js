@@ -1,14 +1,14 @@
 import React from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ConnectBtn from '../../components/ConnectBtn';
-import HeadingRoadMap from '../../components/heading';
 import Inprogress from '../../components/inprogress';
 import Live from '../../components/live';
 import Planned from '../../components/planned';
-import RoadMapCard from '../../components/roadmapcard';
 import Tabs from '../../components/tab';
 
 const RoadMapInnerPage = () => {
+  const navigate = useNavigate()
   const tabs = [
     {
       name: "Planned",
@@ -23,17 +23,19 @@ const RoadMapInnerPage = () => {
       content: <Live />,
     }
   ];
+  const backToMain = () => navigate('/')
+  const addFeedBack = () => navigate('/CreateFeed')
   return <RoadMapInnerPageWrapper>
     <WidgetWrapper>
       <div>
-        <span>
+        <span onClick={backToMain}>
           <span><i className="fas fa-long-arrow-alt-left"></i></span>
           <span>Go Back</span>
         </span>
         <span>RoadMap</span>
       </div>
       <div className='btnWrap'>
-        <ConnectBtn text={'+ Add Feedback'} />
+        <ConnectBtn text={'+ Add Feedback'} OnClick={addFeedBack} />
       </div>
     </WidgetWrapper>
     <Main>

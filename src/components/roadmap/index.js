@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 const RoadMap = () => {
   return <RoadMapWrapper>
     <div className='headingRoadmap'>
       <h3>Roadmap</h3>
-      <a href='#'>view</a>
+      <Link to={'/roadmap'}>view</Link>
     </div>
     <div className='contents'>
       <div><span style={{ width: '.4rem', height: '.4rem', borderRadius: '.2rem', background: '#f49f85' }}></span> <p>Planned</p> <h4>2</h4></div>

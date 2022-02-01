@@ -1,12 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Login from '../../Auth/signin';
 import { colors } from '../../colors';
 import InputField from '../../components/inputfield';
 
 const SignIn = () => {
+  const navigate = useNavigate()
+  const handleCloseSignInPage = () => navigate('/')
+  const goToSignUpPage = () => navigate('/signup')
   return <SignInWrapper>
-    <i class="fas fa-times-circle fa-2x"></i>
+    <i className="fas fa-times-circle fa-2x" onClick={handleCloseSignInPage}></i>
     <main>
       <div>
         <span>User Name</span>
@@ -20,7 +24,7 @@ const SignIn = () => {
         <Login text={'Login'} />
       </div>
       <div>
-        <p>Dont have an account ? <a>Sign up</a> here</p>
+        <p>Dont have an account ? <a onClick={goToSignUpPage}>Sign up</a> here</p>
       </div>
     </main>
 

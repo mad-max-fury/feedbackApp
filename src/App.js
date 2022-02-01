@@ -1,23 +1,25 @@
 
 import './App.css';
-import { colors } from './colors';
-import CreaateFeed from './containers/createfeed';
-import Home from './pages/home';
+import { Home, SignUp, SignIn } from './pages/index'
+import { BrowserRouter as Router, Routes, Route, Navigate, resolvePath } from 'react-router-dom'
 import RoadMapInnerPage from './pages/roadmapinnerpage';
-import SignIn from './pages/signin';
-import SignUp from './pages/signup';
-
-
+import CreateFeed from './containers/createfeed';
+import FeedBackDetails from './pages/feedbackdetails';
 
 function App() {
 
   return (
     <div className="App">
-      {/* <Home /> */}
-      <RoadMapInnerPage />
-      {/* <SignIn /> */}
-      {/* <SignUp /> */}
-      {/* <CreaateFeed /> */}
+      <Router>
+        <Routes>
+          <Route path='/' exact element={<Home />} />
+          <Route path='/roadmap' element={<RoadMapInnerPage />} />
+          <Route path='/signup' element={<SignUp />} />
+          <Route path='/signin' element={<SignIn />} />
+          <Route path='/CreateFeed' element={<CreateFeed />} />
+          <Route path='/feedbackdetails' element={<FeedBackDetails />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

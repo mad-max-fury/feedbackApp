@@ -1,9 +1,11 @@
 import React from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ConnectBtn from '../../components/ConnectBtn';
 import SelecteTag from '../../components/selecttag';
 const Widget = () => {
-
+  const navigate = useNavigate()
+  const addFeedback = () => navigate('/CreateFeed')
   return <WidgetWrapper>
     <div className='sort'>
       <span className='suggestionCount'>
@@ -14,7 +16,7 @@ const Widget = () => {
       </span>
     </div>
     <div className='btnWrap'>
-      <ConnectBtn text={'+ Add Feedback'} />
+      <ConnectBtn text={'+ Add Feedback'} OnClick={addFeedback} />
     </div>
   </WidgetWrapper>;
 };
