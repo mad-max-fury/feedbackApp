@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { colors } from '../../colors';
+import Comments from '../../components/Comments';
 import CreateFeed from '../../containers/createcomment';
 import Feedback from '../../containers/feedback/Feedback';
 const FeedBackDetails = () => {
@@ -9,6 +10,7 @@ const FeedBackDetails = () => {
     <BackButton onClick={handleBackClick}><span><i className="fas fa-long-arrow-alt-left"></i></span> <span>Go Back</span></BackButton>
     <MainDiv>
       <Feedback />
+      <Comments />
       <CreateFeed />
     </MainDiv>
   </FeedBackDetailsWrapper>;

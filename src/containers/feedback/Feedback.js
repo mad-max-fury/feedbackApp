@@ -17,7 +17,7 @@ const Feedback = () => {
     </div>
     <CommentCount >
       <span className='commentIcon'><i className="fas fa-comment"></i></span>
-      <span className='count'>2</span>
+      <span className='count'>3</span>
     </CommentCount>
   </FeedbackWrapper>;
 };
