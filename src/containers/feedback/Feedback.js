@@ -4,13 +4,15 @@ import styled from 'styled-components';
 import { colors } from '../../colors';
 import FeedBackMessage from '../../components/message';
 import Upvote from '../../components/upvote';
-
+import { motion } from 'framer-motion';
 const Feedback = () => {
   const navigate = useNavigate()
   const handleFeedDetails = () => {
     navigate('/feedbackdetails')
   }
-  return <FeedbackWrapper onClick={handleFeedDetails}>
+  return <FeedbackWrapper as={motion.div}
+    whileHover={{ scale: .97 }}
+    onClick={handleFeedDetails}>
     <div className='firstWrap'>
       <Upvote />
       <FeedBackMessage />
@@ -24,7 +26,7 @@ const Feedback = () => {
 
 export default Feedback;
 
-const FeedbackWrapper = styled.div`
+const FeedbackWrapper = styled(motion.div)`
 
  width:50vw;
  height:fit-content;
@@ -50,8 +52,9 @@ const FeedbackWrapper = styled.div`
   }
  }
  &:hover{
-   transition:all 0.4s ease-in-out;
-   padding:.8rem;
+   transition:all 0.1s ;
+  //  padding:.8rem;
+  cursor:pointer;
  }
 
 

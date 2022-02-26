@@ -3,10 +3,11 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import ConnectBtn from '../../components/ConnectBtn';
 import SelecteTag from '../../components/selecttag';
+import { motion } from 'framer-motion';
 const Widget = () => {
   const navigate = useNavigate()
   const addFeedback = () => navigate('/CreateFeed')
-  return <WidgetWrapper>
+  return <WidgetWrapper as={motion.div} initial={{ x: '100vw' }} animate={{ x: 0 }} transition={{ delay: .15, type: 'tween', duration: 1 }}>
     <div className='sort'>
       <span className='suggestionCount'>
         <h3><i className="far fa-lightbulb "></i> 28 Suggestions</h3>
@@ -24,7 +25,7 @@ const Widget = () => {
 export default Widget;
 
 
-const WidgetWrapper = styled.div`
+const WidgetWrapper = styled(motion.div)`
 
  width:50vw;
  height:fit-content;

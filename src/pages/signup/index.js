@@ -4,14 +4,14 @@ import styled from 'styled-components';
 import SignUpForm from '../../Auth/signup';
 import { colors } from '../../colors';
 import InputField from '../../components/inputfield';
-
+import { motion } from 'framer-motion';
 const SignUp = () => {
   const navigate = useNavigate()
   const goToSignInPage = () => navigate('/signin')
   const closeSignUpPage = () => navigate('/')
-  return <SignUpWrapper>
+  return <SignUpWrapper as={motion.form} initial={{ x: '100vw', opacity: 0 }} transition={{ delay: .1, type: 'spring', duration: 1 }} animate={{ x: 0, opacity: 1 }}>
     <i class="fas fa-times-circle fa-2x" onClick={closeSignUpPage}></i>
-    <main>
+    <motion.main initial={{ scale: 0 }} transition={{ delay: .4, type: 'tween', duration: 1.2 }} animate={{ scale: 1 }}>
       <div>
         <span>Full Name</span>
         <InputField type={'text'} placeholder={'chris code'} />
@@ -34,14 +34,14 @@ const SignUp = () => {
       <div>
         <p>Have an Account ? <a onClick={goToSignInPage}>Sign In</a> here</p>
       </div>
-    </main>
+    </motion.main>
 
-  </SignUpWrapper>;
+  </SignUpWrapper >;
 };
 
 export default SignUp;
 
-const SignUpWrapper = styled.form`
+const SignUpWrapper = styled(motion.form)`
 width:calc(100vw - 1rem);
 height:calc(100vh - 2rem);
 padding:1rem;

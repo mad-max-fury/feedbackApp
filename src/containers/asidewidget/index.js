@@ -5,13 +5,13 @@ import CategoryWidget from '../../components/categorywidget';
 import ConnectBtn from '../../components/ConnectBtn';
 import LoginConnect from '../../components/loginBtnConnector';
 import RoadMap from '../../components/roadmap';
-
+import { motion } from 'framer-motion';
 const AsideWidget = () => {
 
   const [style, setStyle] = useState({ display: 'none', opacity: '0' })
   const handleHamburgerMenu = () => setStyle({ display: 'flex', opacity: '1' })
   const closeHamburgerMenu = () => setStyle({ display: 'none', opacity: '0' })
-  return <AsideWidgetWrap>
+  return <AsideWidgetWrap as={motion.aside} initial={{ x: '-100vw' }} animate={{ x: 0 }} transition={{ delay: .15, type: 'tween', duration: 1 }}>
     <div className='bigScreen'>
       <div className='flex-col'>
         <div className='login'>
@@ -29,10 +29,11 @@ const AsideWidget = () => {
       <CategoryWidget />
       <RoadMap />
     </div>
-    <div style={{
+    <motion.div style={{
       padding: '1rem',
       position: 'relative'
-    }} className='smallScreen'>
+    }} className='smallScreen'
+      initial={{ x: '-100vw' }} animate={{ x: 0 }}>
       <Banner style={{
         width: 'unset',
         height: 'fit-content',
@@ -59,14 +60,14 @@ const AsideWidget = () => {
         </MenuWrapper>
       </div>
 
-    </div>
+    </motion.div>
   </AsideWidgetWrap>;
 };
 
 export default AsideWidget;
 
 
-const AsideWidgetWrap = styled.aside`
+const AsideWidgetWrap = styled(motion.aside)`
    
 
 
@@ -115,7 +116,7 @@ const AsideWidgetWrap = styled.aside`
     width:100%;
     left:0%;
     top:9.5vh;
-    z-index:50;
+    z-index:1000;
     background:#333333;
     opacity:0.8;
     display:flex;

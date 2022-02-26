@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import { colors } from '../../colors';
 import InputField from '../../components/inputfield';
 import SelecteTag from '../../components/selecttag';
+import { motion } from 'framer-motion';
 const CreateFeed = () => {
   const handleBackClick = () => {
     window.history.back()
   }
   const style = { width: '100%', height: '3rem' }
-  return <CreateFeedWrapper>
-    <BackButton onClick={handleBackClick}><span><i className="fas fa-long-arrow-alt-left"></i></span> <span>Go Back</span></BackButton>
+  return <CreateFeedWrapper as={motion.main} initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: .2, type: 'spring', duration: 2 }}>
+    <BackButton onClick={handleBackClick}><span><motion.i initial={{ scale: 1, x: 0 }} whileHover={{ scale: 1.2, x: -20 }} transition={{ delay: .2, type: 'spring', duration: 1 }} className="fas fa-long-arrow-alt-left"></motion.i></span> <motion.span initial={{ scale: 1, x: 0 }} whileHover={{ scale: 1.2, x: 20 }} transition={{ delay: .2, type: 'spring', duration: 1 }}>Go Back</motion.span></BackButton>
     <MainDiv>
       <h2>Create New Feedback</h2>
       <FeedWidWrap>
@@ -38,7 +39,7 @@ const CreateFeed = () => {
 
 export default CreateFeed;
 
-const CreateFeedWrapper = styled.main`
+const CreateFeedWrapper = styled(motion.main)`
  width:35rem;
  margin:auto;
  margin-top:10vh;

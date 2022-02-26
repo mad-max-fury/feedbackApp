@@ -3,29 +3,29 @@ import styled from 'styled-components';
 import AsideWidget from '../../containers/asidewidget';
 import Feedback from '../../containers/feedback/Feedback';
 import Widget from '../../containers/widget';
-
+import { motion } from 'framer-motion';
 const Home = () => {
-  return <HomeWrapper>
+  return <HomeWrapper as={motion.div} initial={{ scale: 0 }} transition={{ delay: .1, type: 'spring', duration: .5 }} animate={{ scale: 1 }}>
     <div>
       <AsideWidget />
     </div>
     <div>
       <Widget />
-      <div className='feedContainer'>
+      <motion.div className='feedContainer' initial={{ y: '100vh' }} animate={{ y: 0 }} transition={{ delay: .5, type: 'tween', duration: 1 }}>
         {
           ['a', 'a', 1, 3, 3, 7].map(el => {
             return <Feedback key={Math.random()} />
           })
         }
-      </div>
+      </motion.div>
     </div>
-  </HomeWrapper>;
+  </HomeWrapper >;
 };
 
 export default Home;
 
 
-const HomeWrapper = styled.div`
+const HomeWrapper = styled(motion.div)`
  display:flex;
  max-width:1200px;
  margin: 5rem auto 0 auto;
