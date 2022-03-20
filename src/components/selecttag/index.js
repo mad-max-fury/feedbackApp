@@ -1,90 +1,78 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { colors } from "../../colors";
+import {
+  ListboxInput,
+  ListboxButton,
+  ListboxPopover,
+  ListboxList,
+  ListboxOption,
+} from '@reach/listbox';
+import '@reach/listbox/styles.css';
 
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
-const DropDownContainer = styled.div`
-  width: ${props => props.width ? props.width : 'fit-content'} ;
-  margin: 0 auto;
-  position:relative;
-  border-radius:10px;
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
 `;
 
-const DropDownHeader = styled.div`
-  font-weight: 500;
-  font-size: 1rem;
-  color: #3faffa;
-   border-radius:10px;
-  background: ${props => props.width ? '#EBF2FE' : null};
-  height:${props => props.height ? props.height : null};
-  width: ${props => props.width ? props.width : null};
- 
+const MenuList = styled(ListboxButton)`
+  border: none;
 `;
 
-const DropDownListContainer = styled.div`
-position:absolute;
-z-index:100;
-  top:220%;`;
-
-const DropDownList = styled.ul`
-  padding: 0;
-  margin: 0;
-  background: ${colors.general_bg};
-  border: 2px solid #e5e5e5;
-  box-sizing: border-box;
-  color: #3faffa;
-  font-size: 1rem;
-  font-weight: 500;
-  border-radius:10px;
-  width:200% !important;
-
-
-`;
-
-const ListItem = styled.li`
-  list-style: none;
-   border-bottom: 1px solid #e5e5e5;
-  padding:.5rem 1rem;
-   width: ${props => props.width ? props.width : '10rem'} ;
-  &:hover{
-    transition:all .4s ease-in;
-    background:#f5f5f5;
-    color:${colors.grey_text};
-    padding:.5rem 1.2rem;
+const PopOver = styled(ListboxPopover)`
+  background: #ffffff;
+  border-radius: 10px;
+  margin-top: 32px;
+  box-shadow: 0px 10px 40px -7px rgba(55, 63, 104, 0.350492);
+  border: none;
+  > [data-reach-listbox-list] {
+    width: 255px;
+    outline: none;
+    border: none;
+    > [data-reach-listbox-option] {
+      border-bottom: 1px rgba(58, 67, 116, 0.15) solid;
+      padding: 8px;
+    }
   }
 `;
 
-const options = ["Most Upvotes", "Least Upvotes", "Most Comments", "Least Comments"];
+const Dropdown = ({ setSort, sort, style }) => {
+  const [value, setValue] = useState('Least Upvotes');
 
-export default function SelecteTag({ style }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(null);
-
-  const toggling = () => setIsOpen(!isOpen);
-
-  const onOptionClicked = value => () => {
-    setSelectedOption(value);
-    setIsOpen(false);
+  const handleChange = (value) => {
+    setValue(value);
+    if (value === 'Least Upvotes') {
+      // setSort({ query: '&sort=leastUpvotes', value: 'Least Upvotes' });
+    }
+    if (value === 'Most Upvotes') {
+      // setSort({ query: '&sort=mostUpvotes', value: 'Most Upvotes' });
+    }
+    if (value === 'Most Comments') {
+      // setSort({ query: '&sort=mostComments', value: 'Most Comments' });
+    }
+    if (value === 'Least Comments') {
+      // setSort({ query: '&sort=leastComments', value: 'Least Comments' });
+    }
   };
 
   return (
-
-    <DropDownContainer width={style?.width}>
-      <DropDownHeader width={style?.width} height={style?.height} onClick={toggling} className="far fa-angle-down">
-        {selectedOption || "Most Upvotes"}
-      </DropDownHeader>
-      {isOpen && (
-        <DropDownListContainer>
-          <DropDownList>
-            {options.map(option => (
-              <ListItem width={style?.width} onClick={onOptionClicked(option)} key={Math.random()}>
-                {option}
-              </ListItem>
-            ))}
-          </DropDownList>
-        </DropDownListContainer>
-      )}
-    </DropDownContainer>
-
+    <Container style={style ? style : null}>
+      {/* <span id="my-label">Sort by :</span> */}
+      <ListboxInput value={value} onChange={handleChange}>
+        <MenuList arrow />
+        <PopOver>
+          <ListboxList>
+            <ListboxOption value="Most Upvotes"> Most Upvotes </ListboxOption>
+            <ListboxOption value="Least Upvotes">Least Upvotes</ListboxOption>
+            <ListboxOption value="Most Comments">Most Comments</ListboxOption>
+            <ListboxOption value="Least Comments">Least Comments</ListboxOption>
+          </ListboxList>
+        </PopOver>
+      </ListboxInput>
+    </Container>
   );
-}
+};
+
+export default Dropdown;
+
