@@ -1,25 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Login from '../../Auth/signin';
 import { colors } from '../../colors';
 import InputField from '../../components/inputfield';
 import { motion } from 'framer-motion';
+import { useDispatch } from 'react-redux';
+import { handleSignin } from '../../redux/action';
 
 const SignIn = () => {
+  const [userNameOrEmail, setUserNameOrEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const handleCloseSignInPage = () => navigate('/')
   const goToSignUpPage = () => navigate('/signup')
-  return <SignInWrapper as={motion.form} initial={{ x: '-100vw', opacity: 0 }} transition={{ delay: .1, type: 'spring', duration: 1 }} animate={{ x: 0, opacity: 1 }}>
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault()
+    dispatch(handleSignin(userNameOrEmail, password))
+
+  }
+
+  return <SignInWrapper as={motion.form} initial={{ x: '-100vw', opacity: 0 }} transition={{ delay: .1, type: 'spring', duration: 1 }} animate={{ x: 0, opacity: 1 }} onSubmit={handleFormSubmit}>
     <i className="fas fa-times-circle fa-2x" onClick={handleCloseSignInPage}></i>
     <motion.main initial={{ scale: 0 }} transition={{ delay: .4, type: 'tween', duration: 1.2 }} animate={{ scale: 1 }}>
       <div>
         <span>User Name</span>
-        <InputField type={'text'} placeholder={'madmaxfury'} />
+        <InputField type={'text'} placeholder={'madmaxfury'} functionName={setUserNameOrEmail} />
       </div>
       <div>
         <span>Password</span>
-        <InputField type={'password'} placeholder={'.........'} />
+        <InputField type={'password'} placeholder={'.........'} functionName={setPassword} />
       </div>
       <div style={{ paddingTop: '.5rem' }}>
         <Login text={'Login'} />

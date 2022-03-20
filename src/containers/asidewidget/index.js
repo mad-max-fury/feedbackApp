@@ -7,11 +7,21 @@ import LoginConnect from '../../components/loginBtnConnector';
 import RoadMap from '../../components/roadmap';
 import { motion } from 'framer-motion';
 const AsideWidget = () => {
+  const variants = {
+    open: { opacity: 1, x: 0 },
+    closed: { opacity: 0, x: "-100%" },
+  }
+  const [isOpen, setIsOpen] = useState(false)
 
+  //   initial={{ x: '-100vw' }} animate={{ x: 0 }}
+  // initial={{ x: '-100vw' }} animate={{ x: 0 }}
   const [style, setStyle] = useState({ display: 'none', opacity: '0' })
-  const handleHamburgerMenu = () => setStyle({ display: 'flex', opacity: '1' })
+  const handleHamburgerMenu = () => {
+    setIsOpen(!isOpen)
+    setStyle({ display: 'flex', opacity: '1' })
+  }
   const closeHamburgerMenu = () => setStyle({ display: 'none', opacity: '0' })
-  return <AsideWidgetWrap as={motion.aside} initial={{ x: '-100vw' }} animate={{ x: 0 }} transition={{ delay: .15, type: 'tween', duration: 1 }}>
+  return <AsideWidgetWrap as={motion.aside} transition={{ delay: .15, type: 'tween', duration: 1 }}>
     <div className='bigScreen'>
       <div className='flex-col'>
         <div className='login'>
@@ -29,11 +39,11 @@ const AsideWidget = () => {
       <CategoryWidget />
       <RoadMap />
     </div>
-    <motion.div style={{
+    <div style={{
       padding: '1rem',
       position: 'relative'
     }} className='smallScreen'
-      initial={{ x: '-100vw' }} animate={{ x: 0 }}>
+    >
       <Banner style={{
         width: 'unset',
         height: 'fit-content',
@@ -60,7 +70,7 @@ const AsideWidget = () => {
         </MenuWrapper>
       </div>
 
-    </motion.div>
+    </div>
   </AsideWidgetWrap>;
 };
 
@@ -112,11 +122,10 @@ const AsideWidgetWrap = styled(motion.aside)`
   .hamBurger{
     position:absolute;
     height:90.5vh;
-    // border:1px solid red;
     width:100%;
     left:0%;
     top:9.5vh;
-    z-index:1000;
+    z-index:1;
     background:#333333;
     opacity:0.8;
     display:flex;
@@ -143,7 +152,7 @@ const MenuWrapper = styled.div`
   display:flex;
   flex-direction:column;
   gap:1rem;
-  z-index:200;
+  z-index:10;
   right:0%;
   top:9.5vh;
   position:absolute;

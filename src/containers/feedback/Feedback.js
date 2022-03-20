@@ -12,6 +12,7 @@ const Feedback = () => {
   }
   return <FeedbackWrapper as={motion.div}
     whileHover={{ scale: .97 }}
+    style={{ zIndex: '-1' }}
     onClick={handleFeedDetails}>
     <div className='firstWrap'>
       <Upvote />

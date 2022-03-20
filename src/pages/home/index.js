@@ -4,20 +4,29 @@ import AsideWidget from '../../containers/asidewidget';
 import Feedback from '../../containers/feedback/Feedback';
 import Widget from '../../containers/widget';
 import { motion } from 'framer-motion';
+import { useSelector } from 'react-redux';
 const Home = () => {
-  return <HomeWrapper as={motion.div} initial={{ scale: 0 }} transition={{ delay: .1, type: 'spring', duration: .5 }} animate={{ scale: 1 }}>
+
+  const state = useSelector(state => state)
+
+  // localStorage.setItem('myStore', JSON.stringify(state?.auth))
+
+  // console.log(state)
+  // as={motion.div} initial={{ scale: 0 }} transition={{ delay: .1, type: 'spring', duration: .5 }} animate={{ scale: 1 }}
+  // initial={{ y: '100vh' }} animate={{ y: 0 }} transition={{ delay: .5, type: 'tween', duration: 1 }}
+  return <HomeWrapper >
     <div>
       <AsideWidget />
     </div>
     <div>
       <Widget />
-      <motion.div className='feedContainer' initial={{ y: '100vh' }} animate={{ y: 0 }} transition={{ delay: .5, type: 'tween', duration: 1 }}>
+      <div className='feedContainer' >
         {
           ['a', 'a', 1, 3, 3, 7].map(el => {
             return <Feedback key={Math.random()} />
           })
         }
-      </motion.div>
+      </div>
     </div>
   </HomeWrapper >;
 };
@@ -25,7 +34,7 @@ const Home = () => {
 export default Home;
 
 
-const HomeWrapper = styled(motion.div)`
+const HomeWrapper = styled.div`
  display:flex;
  max-width:1200px;
  margin: 5rem auto 0 auto;

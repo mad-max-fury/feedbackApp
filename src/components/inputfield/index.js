@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import { colors } from '../../colors';
 
 
-const InputField = ({ type, placeholder }) => {
+const InputField = ({ type, placeholder, functionName }) => {
   const [value, setValue] = useState('')
 
   const handleChange = ({ target }) => {
     const { value } = target
     setValue(value)
+    functionName(value)
 
   }
   return <InputWrap>

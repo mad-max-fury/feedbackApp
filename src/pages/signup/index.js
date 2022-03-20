@@ -1,32 +1,52 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import SignUpForm from '../../Auth/signup';
 import { colors } from '../../colors';
 import InputField from '../../components/inputfield';
 import { motion } from 'framer-motion';
+import { handleSignup } from '../../redux/action';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
 const SignUp = () => {
+
+  const [fullName, setFullName] = useState('')
+  const [email, setEmail] = useState('')
+  const [userName, setUserName] = useState('')
+  const [password, setPassword] = useState('')
+
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const goToSignInPage = () => navigate('/signin')
   const closeSignUpPage = () => navigate('/')
-  return <SignUpWrapper as={motion.form} initial={{ x: '100vw', opacity: 0 }} transition={{ delay: .1, type: 'spring', duration: 1 }} animate={{ x: 0, opacity: 1 }}>
-    <i class="fas fa-times-circle fa-2x" onClick={closeSignUpPage}></i>
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault()
+    console.log(fullName, userName, email, password)
+    dispatch(handleSignup(fullName, userName, email, password))
+
+
+
+
+  }
+  return <SignUpWrapper onSubmit={handleFormSubmit} as={motion.form} initial={{ x: '100vw', opacity: 0 }} transition={{ delay: .1, type: 'spring', duration: 1 }} animate={{ x: 0, opacity: 1 }}>
+    <i className="fas fa-times-circle fa-2x" onClick={closeSignUpPage}></i>
     <motion.main initial={{ scale: 0 }} transition={{ delay: .4, type: 'tween', duration: 1.2 }} animate={{ scale: 1 }}>
       <div>
         <span>Full Name</span>
-        <InputField type={'text'} placeholder={'chris code'} />
+        <InputField type={'text'} placeholder={'chris code'} functionName={setFullName} />
       </div>
       <div>
         <span>User Name</span>
-        <InputField type={'text'} placeholder={'madmaxfury'} />
+        <InputField type={'text'} placeholder={'madmaxfury'} functionName={setUserName} />
       </div>
       <div>
         <span>Email</span>
-        <InputField type={'email'} placeholder={'hello@example.com'} />
+        <InputField type={'email'} placeholder={'hello@example.com'} functionName={setEmail} />
       </div>
       <div>
         <span>Password</span>
-        <InputField type={'password'} placeholder={'.........'} />
+        <InputField type={'password'} placeholder={'.........'} functionName={setPassword} />
       </div>
       <div style={{ paddingTop: '.5rem' }}>
         <SignUpForm text={'Sign Up'} />
