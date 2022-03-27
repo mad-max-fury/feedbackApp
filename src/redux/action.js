@@ -5,35 +5,18 @@ const SIGNIN = "SIGNIN";
 const LOGOUT = "LOGOUT";
 const FETCH_DATA = "FETCH_DATA";
 
-export const handleSignup =
-  (fullName, userName, email, password) => async (dispatch) => {
-    const response = await feedbackApp.post("/users/signup", {
-      fullName,
-      userName,
-      email,
-      password,
-    });
-    dispatch({
-      type: SIGNUP,
-      payload: response.data,
-    });
-  };
+export const handleSignup = (data) => async (dispatch) => {
+  dispatch({
+    type: SIGNUP,
+    payload: data,
+  });
+};
 
-export const handleSignin = (nameField, password) => async (dispatch) => {
-  try {
-    const response = await feedbackApp.post("/users/login", {
-      nameField,
-      password,
-    });
-    dispatch({
-      type: SIGNIN,
-      payload: response.data,
-    });
-    toast(response.data.message);
-  } catch (error) {
-    console.log(error);
-    toast.error(error.message);
-  }
+export const handleSignin = (data) => async (dispatch) => {
+  dispatch({
+    type: SIGNIN,
+    payload: data,
+  });
 };
 export const handleGetPosts = () => async (dispatch) => {
   try {

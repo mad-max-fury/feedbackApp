@@ -26,18 +26,20 @@ const CreateFeed = () => {
     setPostData({ title, feedback, postTag });
   }, [title, feedback, postTag]);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    feedbackApp
-      .post("/createPost", JSON.stringify(postData))
-      .then((res) => {
-        if (res.ok) toast.success("created successfully");
-        toast.error("feedback creation failed");
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("feedback creation failed");
-      });
+    try {
+      const response = await feedbackApp.post(
+        "/createPost",
+        JSON.stringify(postData)
+      );
+
+      if (response.ok) toast.success("created successfully");
+    } catch (err) {
+      console.log(err);
+      toast.error("feedback creation failed");
+      // toast.error("feedback creation failed");
+    }
   };
   return (
     <CreateFeedWrapper
