@@ -25,19 +25,12 @@ const SignUp = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await feedbackApp.post(
-        "/users/signup",
-        {
-          fullName,
-          userName,
-          email,
-          password,
-        },
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
+      const response = await feedbackApp.post("/users/signup", {
+        fullName,
+        userName,
+        email,
+        password,
+      });
 
       dispatch(handleSignup(response?.data));
       toast.success(response?.data?.message);

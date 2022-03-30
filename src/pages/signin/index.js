@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 const SignIn = () => {
   const state = useSelector((state) => state);
   const [loading, setLoading] = useState(false);
-  const [userNameOrEmail, setUserNameOrEmail] = useState("");
+  const [nameField, setNameField] = useState("");
   const [password, setPassword] = useState("");
 
   const dispatch = useDispatch();
@@ -25,14 +25,10 @@ const SignIn = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await feedbackApp.post(
-        "/users/login",
-        JSON.stringify({ nameField: userNameOrEmail, password: password }),
-        {
-          headers: { "Content-Type": "application/json" },
-          withCredentials: true,
-        }
-      );
+      const response = await feedbackApp.post("/users/login", {
+        nameField,
+        password,
+      });
       dispatch(handleSignin(response?.data));
       const accessToken = response?.data?.token;
       console.log(accessToken);
@@ -78,7 +74,7 @@ const SignIn = () => {
           <InputField
             type={"text"}
             placeholder={"madmaxfury"}
-            functionName={setUserNameOrEmail}
+            functionName={setNameField}
           />
         </div>
         <div>
