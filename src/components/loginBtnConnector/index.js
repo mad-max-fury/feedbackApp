@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import styled from "styled-components";
+import feedbackApp from "../../api/feedbackApp";
 import { colors } from "../../colors";
 import { handleLogout } from "../../redux/action";
 
@@ -15,7 +17,30 @@ const LoginConnect = () => {
   const dispatch = useDispatch();
 
   const state = useSelector((state) => state);
+  const accessToken = state?.auth?.profile?.accessToken;
 
+  const Logout = async () => {
+    // window.localStorage.removeItem("myStore");
+    // window.location.reload();
+    try {
+      const res = await feedbackApp.get("/users/logout", {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      setTimeout(() => {
+        toast.success("see Ya, come back quickly for more feed", {
+          position: "top-center",
+          autoClose: 10000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        });
+        dispatch(handleLogout());
+      }, 5000);
+    } catch (err) {}
+  };
   useEffect(() => {
     if (state?.auth.sign_in === false) {
       setIsLoggedIn(false);
@@ -48,7 +73,7 @@ const LoginConnect = () => {
             </UserWrapper>
             {showMiniModal ? (
               <MiniModal onClick={() => setShowMiniModal(false)}>
-                <button onClick={() => dispatch(handleLogout())}>logout</button>
+                <button onClick={Logout}>logout</button>
                 <button> Edit profile</button>
               </MiniModal>
             ) : null}

@@ -1,21 +1,42 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import AsideWidget from "../../containers/asidewidget";
 import Feedback from "../../containers/feedback/Feedback";
 import Widget from "../../containers/widget";
 import { motion } from "framer-motion";
+import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
+import feedbackApp from "../../api/feedbackApp";
 
 const Home = () => {
+  const dispatch = useDispatch();
+  const [sort, setSort] = useState("least comments");
+  const [filter, setFilter] = useState("All");
+  const [postFeeds, setPostFeeds] = useState([]);
+  const handleGetPosts = async (filter, sort) => {
+    try {
+      const response = await feedbackApp.get(`/${filter}/${sort}`);
+      setPostFeeds(response?.data?.sortedPosts);
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    handleGetPosts(filter.toLowerCase(), sort);
+  }, [sort, filter]);
+
   return (
     <HomeWrapper>
       <div>
-        <AsideWidget />
+        <AsideWidget filter={filter} setFilter={setFilter} />
       </div>
       <div>
-        <Widget />
+        <Widget setSort={setSort} />
         <div className="feedContainer">
-          {["a", "a", 1, 3, 3, 7].map((el) => {
-            return <Feedback key={Math.random()} />;
+          {[...postFeeds].map((el) => {
+            return <Feedback key={Math.random()} post={el} />;
           })}
         </div>
       </div>

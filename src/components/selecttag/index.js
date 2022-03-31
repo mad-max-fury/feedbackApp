@@ -4,11 +4,11 @@ import {
   ListboxPopover,
   ListboxList,
   ListboxOption,
-} from '@reach/listbox';
-import '@reach/listbox/styles.css';
+} from "@reach/listbox";
+import "@reach/listbox/styles.css";
 
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
@@ -38,27 +38,17 @@ const PopOver = styled(ListboxPopover)`
 `;
 
 const Dropdown = ({ setSort, sort, style }) => {
-  const [value, setValue] = useState('Least Upvotes');
+  const [value, setValue] = useState("Least Upvotes");
 
   const handleChange = (value) => {
     setValue(value);
-    if (value === 'Least Upvotes') {
-      // setSort({ query: '&sort=leastUpvotes', value: 'Least Upvotes' });
-    }
-    if (value === 'Most Upvotes') {
-      // setSort({ query: '&sort=mostUpvotes', value: 'Most Upvotes' });
-    }
-    if (value === 'Most Comments') {
-      // setSort({ query: '&sort=mostComments', value: 'Most Comments' });
-    }
-    if (value === 'Least Comments') {
-      // setSort({ query: '&sort=leastComments', value: 'Least Comments' });
-    }
   };
+  useEffect(() => {
+    setSort(value);
+  }, [value]);
 
   return (
     <Container style={style ? style : null}>
-      {/* <span id="my-label">Sort by :</span> */}
       <ListboxInput value={value} onChange={handleChange}>
         <MenuList arrow />
         <PopOver>
@@ -75,4 +65,3 @@ const Dropdown = ({ setSort, sort, style }) => {
 };
 
 export default Dropdown;
-

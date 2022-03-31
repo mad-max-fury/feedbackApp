@@ -30,8 +30,7 @@ const SignIn = () => {
         password,
       });
       dispatch(handleSignin(response?.data));
-      const accessToken = response?.data?.token;
-      console.log(accessToken);
+
       toast.success(response?.data?.message);
       navigate(from, { replace: true });
     } catch (err) {

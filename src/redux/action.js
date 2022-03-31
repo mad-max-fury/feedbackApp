@@ -18,9 +18,9 @@ export const handleSignin = (data) => async (dispatch) => {
     payload: data,
   });
 };
-export const handleGetPosts = () => async (dispatch) => {
+export const handleGetPosts = (filter, sort) => async (dispatch) => {
   try {
-    const response = await feedbackApp.get();
+    const response = await feedbackApp.get(`/${filter}/${sort}`);
     dispatch({
       type: FETCH_DATA,
       payload: response.data,
@@ -32,19 +32,6 @@ export const handleGetPosts = () => async (dispatch) => {
   }
 };
 export const handleLogout = () => async (dispatch) => {
-  window.localStorage.removeItem("myStore");
-  window.location.reload();
-  setTimeout(() => {
-    toast.success("see Ya, come back quickly for more feed", {
-      position: "top-center",
-      autoClose: 10000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-    });
-  }, 5000);
-
   dispatch({
     type: LOGOUT,
   });

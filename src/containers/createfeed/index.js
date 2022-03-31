@@ -6,12 +6,14 @@ import feedbackApp from "../../api/feedbackApp";
 import { motion } from "framer-motion";
 import Category from "../../components/categories";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 const CreateFeed = () => {
   const [title, setTitle] = useState("");
   const [feedback, setFeedback] = useState("");
   const [postTag, setPostTag] = useState("");
-
+  const state = useSelector((state) => state);
+  const accessToken = state?.auth?.profile?.accessToken;
   const [postData, setPostData] = useState({
     title: "Feedback Title",
     feedback: "This is a simple sentence to test the feedback api!",
@@ -27,18 +29,28 @@ const CreateFeed = () => {
   }, [title, feedback, postTag]);
 
   const handleSubmit = async (e) => {
+    const title = postData.title;
+    const feedback = postData.feedback;
+    const postTag = postData.postTag;
     e.preventDefault();
     try {
       const response = await feedbackApp.post(
         "/createPost",
-        JSON.stringify(postData)
+        {
+          title,
+          feedback,
+          postTag,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
       );
 
-      if (response.ok) toast.success("created successfully");
+      toast.success(response?.data?.message);
     } catch (err) {
-      console.log(err);
       toast.error("feedback creation failed");
-      // toast.error("feedback creation failed");
     }
   };
   return (
