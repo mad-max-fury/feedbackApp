@@ -148,7 +148,6 @@ const Button = styled.button`
     transition: all 0.2s;
   }
 `;
-
 const SignUpWrapper = styled(motion.form)`
   width: calc(100vw - 1rem);
   height: calc(100vh - 2rem);
@@ -161,8 +160,20 @@ const SignUpWrapper = styled(motion.form)`
   );
   display: flex;
   flex-direction: column;
+  @media screen and (max-width: 768px) {
+    // border:1px solid red;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+  }
   & > i {
     color: ${colors.white};
+    width: fit-content;
+    @media screen and (max-width: 768px) {
+      align-self: center;
+      margin-top: 1rem;
+      // border:1px solid red;
+    }
     &:hover {
       transition: all 0.3s ease-in;
       cursor: pointer;
@@ -177,14 +188,22 @@ const SignUpWrapper = styled(motion.form)`
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    @media screen and (max-width: 768px) {
+      padding: 1rem;
+    }
     gap: 1rem;
     & > div {
       display: flex;
       flex-direction: column;
       gap: 1rem;
       width: 350px;
-      @media and (max-width: 768px) {
+      @media screen and (max-width: 768px) {
         width: 260px;
+        // border:1px solid red;
+      }
+      @media screen and (max-width: 300px) {
+        width: 240px;
+        //  border:1px solid green;
       }
       span {
         font-weight: bold;

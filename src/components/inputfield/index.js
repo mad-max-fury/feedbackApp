@@ -25,6 +25,7 @@ const InputField = ({ type, placeholder, functionName }) => {
           placeholder={placeholder}
           onChange={handleChange}
           value={value}
+          maxLength={250}
         ></textarea>
       )}
     </InputWrap>

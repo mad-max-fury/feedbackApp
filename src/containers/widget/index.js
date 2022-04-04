@@ -5,7 +5,7 @@ import ConnectBtn from "../../components/ConnectBtn";
 import SelecteTag from "../../components/selecttag";
 import { motion } from "framer-motion";
 
-const Widget = ({ setSort }) => {
+const Widget = ({ sort, setSort }) => {
   const navigate = useNavigate();
   const addFeedback = () => navigate("/CreateFeed");
 
@@ -24,7 +24,7 @@ const Widget = ({ setSort }) => {
         </span>
         <span className="sortBox">
           Sort by:
-          <SelecteTag setSort={setSort} />
+          <SelecteTag sort={sort} setSort={setSort} />
         </span>
       </div>
       <div className="btnWrap">

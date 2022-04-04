@@ -2,16 +2,18 @@ import React from "react";
 import styled from "styled-components";
 import CategoryBtn from "../feedCateBtn";
 
-const FeedBackMessage = ({ post }) => {
+const FeedBackMessage = ({ post, handleFeedDetails }) => {
+  const date = new Date(post?.created_at);
+
   return (
-    <Message>
+    <Message onClick={() => handleFeedDetails()}>
       <div className="userDetails">
         <div className="avater">
           <img src="/images/asset 1.svg" alt="djsd" />
         </div>
         <div className="username">
-          <h5>Hacker Mann</h5>
-          <p>Wednesday Dec 22nd, 2021</p>
+          <h5>{post?.authorName}</h5>
+          <p>{date.toDateString()}</p>
         </div>
       </div>
       <div className="usermessage">

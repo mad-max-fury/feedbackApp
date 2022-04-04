@@ -84,14 +84,16 @@ const CreateFeed = () => {
           <h5>Feedback Title</h5>
           <p>Add a short, descriptive headline</p>
           <InputField
-            placeholder={"Nice and easy to use"}
+            placeholder={"Type your title..."}
             functionName={setTitle}
           />
         </FeedWidWrap>
         <FeedWidWrap>
           <h5>Category</h5>
           <p>Choose a category for your feedback</p>
-          <Category setFields={setPostTag} />
+          <div className="cate">
+            <Category setFields={setPostTag} />
+          </div>
         </FeedWidWrap>
         <FeedWidWrap>
           <h5>Feedback Detail</h5>
@@ -129,6 +131,9 @@ const CreateFeedWrapper = styled(motion.form)`
   flex-direction: column;
   gap: 4rem;
   height: 120vh;
+  @media (max-width: 768px) {
+    width: 90%;
+  }
 `;
 const BackButton = styled.div`
   display: flex;
@@ -136,13 +141,19 @@ const BackButton = styled.div`
   font-size: 16px;
   cursor: pointer;
   font-weight: 800;
+  background: #ad1fea;
+  padding: 1rem;
+  width: fit-content;
+  border-radius: 10px;
+  color: ${colors.white};
+  transition: all 0.3s ease-in-out;
 
-  color: ${colors.grey_text_secondary};
   .fa-long-arrow-alt-left {
-    color: ${colors.main_color};
+    color: ${colors.white};
   }
-  @media screen and (max-width: 768px) {
-    padding-left: 2rem;
+  &:hover {
+    transition: all 0.3s ease-in-out;
+    background: rgba(173, 31, 234, 0.8);
   }
 `;
 const MainDiv = styled.div`
@@ -195,6 +206,9 @@ const FeedWidWrap = styled.div`
   p {
     margin: 0;
     font-size: 14px;
+  }
+  & > div.cate {
+    width: 85%;
   }
 `;
 const BtnWrapper = styled.button`

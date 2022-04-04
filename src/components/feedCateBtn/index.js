@@ -14,7 +14,7 @@ const Btn = styled.button`
   flex-direction: column;
   padding: 8px 12px;
   background: #f2f4fe;
-  color: #3a4374;
+  color: #5687f1;
   align-items: center;
   gap: 0.2rem;
   font-size: 16px;

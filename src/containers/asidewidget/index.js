@@ -145,7 +145,7 @@ const AsideWidgetWrap = styled(motion.aside)`
       height: 90.5vh;
       width: 100%;
       left: 0%;
-      top: 9.5vh;
+      top: 10.5vh;
       z-index: 1;
       background: #333333;
       opacity: 0.8;
@@ -167,13 +167,13 @@ const MenuWrapper = styled.div`
   width: fit-content;
   padding: 1rem;
   background: ${colors.general_bg};
-  height: 89vh;
+  height: calc(90.5vh - 2rem);
   display: flex;
   flex-direction: column;
   gap: 1rem;
   z-index: 10;
   right: 0%;
-  top: 9.5vh;
+  top: 10.5vh;
   position: absolute;
   .login {
     padding: 1rem;

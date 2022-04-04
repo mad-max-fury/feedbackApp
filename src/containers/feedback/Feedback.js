@@ -5,22 +5,29 @@ import { colors } from "../../colors";
 import FeedBackMessage from "../../components/message";
 import Upvote from "../../components/upvote";
 import { motion } from "framer-motion";
-const Feedback = ({ post }) => {
+const Feedback = ({ post, setReload, reload }) => {
   const navigate = useNavigate();
   const handleFeedDetails = () => {
-    navigate("feedbackdetails");
+    navigate("/feedbackdetails");
+    localStorage.setItem("postId", post._id);
   };
   return (
-    <FeedbackWrapper onClick={handleFeedDetails} id={post?._id}>
+    <FeedbackWrapper>
       <div className="firstWrap">
-        <Upvote vote={post?.upvotes} />
-        <FeedBackMessage post={post} />
+        <Upvote post={post} setReload={setReload} reload={reload} />
+        <FeedBackMessage
+          post={post}
+          handleFeedDetails={handleFeedDetails}
+          id={post?._id}
+        />
       </div>
       <CommentCount>
         <span className="commentIcon">
           <i className="fas fa-comment"></i>
         </span>
-        <span className="count">{post?.comments?.length}</span>
+        <span className="count">
+          {post?.commentCount ? post?.commentCount : 0}
+        </span>
       </CommentCount>
     </FeedbackWrapper>
   );
@@ -38,16 +45,14 @@ const FeedbackWrapper = styled.div`
   gap: 1rem;
   border-radius: 10px;
   justify-content: space-between;
-  @media screen and (max-width: 915px) {
-    width: 85vw;
-  }
+
   .firstWrap {
     display: flex;
     gap: 2rem;
   }
   @media screen and (max-width: 939px) {
     position: relative;
-    width: 80vw;
+    width: 80%;
     .firstWrap {
       flex-direction: column-reverse;
     }

@@ -64,8 +64,9 @@ const CateWidWrapper = styled.div`
     }
     &.active {
       transition: 0.4s all ease-in-out;
-      background: #cfd7ff;
+      background: #5687f1;
       padding: 0.7rem 0.9rem;
+      color: #fff;
     }
   }
 `;

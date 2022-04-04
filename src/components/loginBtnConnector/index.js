@@ -39,7 +39,10 @@ const LoginConnect = () => {
         });
         dispatch(handleLogout());
       }, 5000);
-    } catch (err) {}
+    } catch (err) {
+      window.localStorage.removeItem("myStore");
+      window.location.reload();
+    }
   };
   useEffect(() => {
     if (state?.auth.sign_in === false) {

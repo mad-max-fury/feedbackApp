@@ -8,24 +8,25 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import feedbackApp from "../../api/feedbackApp";
 
-const Home = () => {
+const Home = ({ setPostId }) => {
   const dispatch = useDispatch();
   const [sort, setSort] = useState("least comments");
   const [filter, setFilter] = useState("All");
+  const [reload, setReload] = useState(false);
   const [postFeeds, setPostFeeds] = useState([]);
   const handleGetPosts = async (filter, sort) => {
     try {
       const response = await feedbackApp.get(`/${filter}/${sort}`);
       setPostFeeds(response?.data?.sortedPosts);
+      // console.log(response);
     } catch (error) {
-      console.log(error);
       toast.error(error.message);
     }
   };
 
   useEffect(() => {
-    handleGetPosts(filter.toLowerCase(), sort);
-  }, [sort, filter]);
+    handleGetPosts(filter.toLowerCase(), sort.toLowerCase());
+  }, [filter, sort, reload]);
 
   return (
     <HomeWrapper>
@@ -33,10 +34,18 @@ const Home = () => {
         <AsideWidget filter={filter} setFilter={setFilter} />
       </div>
       <div>
-        <Widget setSort={setSort} />
+        <Widget sort={sort} setSort={setSort} />
         <div className="feedContainer">
           {[...postFeeds].map((el) => {
-            return <Feedback key={Math.random()} post={el} />;
+            return (
+              <Feedback
+                key={Math.random()}
+                post={el}
+                setReload={setReload}
+                reload={reload}
+                setPostId={setPostId}
+              />
+            );
           })}
         </div>
       </div>

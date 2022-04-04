@@ -37,15 +37,12 @@ const PopOver = styled(ListboxPopover)`
   }
 `;
 
-const Dropdown = ({ setSort, sort, style }) => {
+const Dropdown = ({ sort, setSort, style }) => {
   const [value, setValue] = useState("Least Upvotes");
-
   const handleChange = (value) => {
     setValue(value);
-  };
-  useEffect(() => {
     setSort(value);
-  }, [value]);
+  };
 
   return (
     <Container style={style ? style : null}>

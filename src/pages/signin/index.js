@@ -36,7 +36,7 @@ const SignIn = () => {
     } catch (err) {
       console.log(err?.response);
       if (!err?.response) {
-        toast.error("check Network Connection");
+        toast.error("Check Network Connection");
         setLoading(false);
       } else if (err.response?.status === 400) {
         toast.error(err?.response?.data?.message);
