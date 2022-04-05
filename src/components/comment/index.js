@@ -34,6 +34,19 @@ const Comment = ({ el, reload, postId, setReload }) => {
       toast.error(error.message);
     }
   };
+  const handleDelete = async () => {
+    try {
+      const response = await feedbackApp.delete(`/deleteComment/${el?._id}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      toast.success(response?.data?.message);
+      setReload(!reload);
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <>
@@ -59,7 +72,11 @@ const Comment = ({ el, reload, postId, setReload }) => {
                 ↩
               </span>
               {el?.author === state?.auth?.profile?.userId && (
-                <i title="delete" className="fas fa-times-circle fa-1x"></i>
+                <i
+                  title="delete"
+                  className="fas fa-times-circle fa-1x"
+                  onClick={handleDelete}
+                ></i>
               )}
             </div>
           )}

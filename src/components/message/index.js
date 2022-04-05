@@ -46,6 +46,7 @@ const Message = styled.div`
       h5 {
         margin: 0;
         color: #3a4374;
+        font-size: 0.8rem;
       }
       p {
         margin: 0;
@@ -62,6 +63,9 @@ const Message = styled.div`
     gap: 0.2rem;
     h3 {
       margin: 0;
+      color: #3a4374;
+      font-size: 1rem;
+      font-weight: semi-bold;
     }
     p {
       margin: 0;

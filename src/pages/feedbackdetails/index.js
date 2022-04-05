@@ -13,6 +13,7 @@ const FeedBackDetails = () => {
 
   const [reload, setReload] = useState(false);
   const [post, setPost] = useState(null);
+  console.log(post);
 
   const handleGetPosts = async (postId) => {
     if (postId === null) window.history.back();

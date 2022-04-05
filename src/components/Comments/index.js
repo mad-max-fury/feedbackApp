@@ -5,7 +5,12 @@ import Comment from "../comment";
 const Comments = ({ post, reload, postId, setReload }) => {
   return (
     <CommentWrapper>
-      <h3>{post?.comments[0]?.comments?.length} Comments</h3>
+      <h3>
+        {post?.comments[0]?.comments?.length > 0
+          ? post?.comments[0]?.comments?.length
+          : 0}{" "}
+        Comments
+      </h3>
       {post?.comments[0]?.comments?.map((el, i) => {
         return (
           <Comment

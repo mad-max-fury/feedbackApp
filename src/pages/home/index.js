@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import feedbackApp from "../../api/feedbackApp";
+import { Puff } from "react-loader-spinner";
 
 const Home = ({ setPostId }) => {
   const dispatch = useDispatch();
@@ -30,25 +31,33 @@ const Home = ({ setPostId }) => {
 
   return (
     <HomeWrapper>
-      <div>
-        <AsideWidget filter={filter} setFilter={setFilter} />
-      </div>
-      <div>
-        <Widget sort={sort} setSort={setSort} />
-        <div className="feedContainer">
-          {[...postFeeds].map((el) => {
-            return (
-              <Feedback
-                key={Math.random()}
-                post={el}
-                setReload={setReload}
-                reload={reload}
-                setPostId={setPostId}
-              />
-            );
-          })}
+      {postFeeds.length < 1 ? (
+        <div style={{ margin: "50% auto" }}>
+          <Puff color="#00BFFF" height={140} width={140} />
         </div>
-      </div>
+      ) : (
+        <>
+          <div>
+            <AsideWidget filter={filter} setFilter={setFilter} />
+          </div>
+          <div>
+            <Widget sort={sort} setSort={setSort} />
+            <div className="feedContainer">
+              {[...postFeeds].map((el) => {
+                return (
+                  <Feedback
+                    key={Math.random()}
+                    post={el}
+                    setReload={setReload}
+                    reload={reload}
+                    setPostId={setPostId}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        </>
+      )}
     </HomeWrapper>
   );
 };

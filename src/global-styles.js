@@ -2,10 +2,11 @@ import { createGlobalStyle } from "styled-components";
 import { colors } from "./colors";
 
 export const GlobalStyles = createGlobalStyle`
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
     * {
         margin: 0;
         font-size: 16px;
-        font-family: 'Josefin Sans', sans-serif;
+     font-family: 'Ubuntu Mono', monospace;
          background: "#F7F8FD";
     }
     
