@@ -14,10 +14,10 @@ const Comment = ({ el, reload, postId, setReload }) => {
   console.log(el);
   const handleReply = async (e) => {
     e.preventDefault();
-    console.log(value, el?._id);
+
     try {
       const response = await feedbackApp.post(
-        `/replyComment/${el?._id}`,
+        `/replyComment/${postId}/${el?._id}`,
         {
           comment: value,
         },
@@ -36,11 +36,14 @@ const Comment = ({ el, reload, postId, setReload }) => {
   };
   const handleDelete = async () => {
     try {
-      const response = await feedbackApp.delete(`/deleteComment/${el?._id}`, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
+      const response = await feedbackApp.delete(
+        `/deleteComment/${postId}/${el?._id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
       toast.success(response?.data?.message);
       setReload(!reload);
     } catch (error) {

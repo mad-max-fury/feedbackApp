@@ -15,11 +15,13 @@ const Home = ({ setPostId }) => {
   const [filter, setFilter] = useState("All");
   const [reload, setReload] = useState(false);
   const [postFeeds, setPostFeeds] = useState([]);
+  const [successful, setSuccessful] = useState(false);
   const handleGetPosts = async (filter, sort) => {
     try {
       const response = await feedbackApp.get(`/${filter}/${sort}`);
+      console.log(response);
       setPostFeeds(response?.data?.sortedPosts);
-      // console.log(response);
+      response.status === 200 && setSuccessful(!successful);
     } catch (error) {
       toast.error(error.message);
     }
@@ -31,7 +33,7 @@ const Home = ({ setPostId }) => {
 
   return (
     <HomeWrapper>
-      {postFeeds.length < 1 ? (
+      {!successful ? (
         <div style={{ margin: "50% auto" }}>
           <Puff color="#00BFFF" height={140} width={140} />
         </div>
@@ -43,17 +45,21 @@ const Home = ({ setPostId }) => {
           <div>
             <Widget sort={sort} setSort={setSort} />
             <div className="feedContainer">
-              {[...postFeeds].map((el) => {
-                return (
-                  <Feedback
-                    key={Math.random()}
-                    post={el}
-                    setReload={setReload}
-                    reload={reload}
-                    setPostId={setPostId}
-                  />
-                );
-              })}
+              {postFeeds?.length < 1 ? (
+                <div style={{ margin: "auto", fontSize: "27px" }}>no Post</div>
+              ) : (
+                [...postFeeds].map((el) => {
+                  return (
+                    <Feedback
+                      key={Math.random()}
+                      post={el}
+                      setReload={setReload}
+                      reload={reload}
+                      setPostId={setPostId}
+                    />
+                  );
+                })
+              )}
             </div>
           </div>
         </>

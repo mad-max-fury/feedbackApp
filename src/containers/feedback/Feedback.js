@@ -6,6 +6,7 @@ import FeedBackMessage from "../../components/message";
 import Upvote from "../../components/upvote";
 import { motion } from "framer-motion";
 const Feedback = ({ post, setReload, reload }) => {
+  // console.log(post);
   const navigate = useNavigate();
   const handleFeedDetails = () => {
     navigate("/feedbackdetails");
@@ -26,7 +27,7 @@ const Feedback = ({ post, setReload, reload }) => {
           <i className="fas fa-comment"></i>
         </span>
         <span className="count">
-          {post?.commentCount ? post?.commentCount : 0}
+          {post?.comments ? post?.comments?.length : 0}
         </span>
       </CommentCount>
     </FeedbackWrapper>

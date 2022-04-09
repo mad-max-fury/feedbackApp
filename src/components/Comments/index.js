@@ -3,15 +3,16 @@ import styled from "styled-components";
 import { colors } from "../../colors";
 import Comment from "../comment";
 const Comments = ({ post, reload, postId, setReload }) => {
+  console.log(post?.allComments);
   return (
     <CommentWrapper>
       <h3>
-        {post?.comments[0]?.comments?.length > 0
-          ? post?.comments[0]?.comments?.length
+        {post?.allComments?.comments?.length > 0
+          ? post?.allComments?.comments?.length
           : 0}{" "}
         Comments
       </h3>
-      {post?.comments[0]?.comments?.map((el, i) => {
+      {post?.allComments?.comments?.map((el, i) => {
         return (
           <Comment
             el={el}
