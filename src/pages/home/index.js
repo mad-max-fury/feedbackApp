@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import feedbackApp from "../../api/feedbackApp";
 import { Puff } from "react-loader-spinner";
 
-const Home = ({ setPostId }) => {
+const Home = ({ setPostId, showModal, SetShowModal }) => {
   const dispatch = useDispatch();
   const [sort, setSort] = useState("least comments");
   const [filter, setFilter] = useState("All");
@@ -21,7 +21,7 @@ const Home = ({ setPostId }) => {
       const response = await feedbackApp.get(`/${filter}/${sort}`);
       console.log(response);
       setPostFeeds(response?.data?.sortedPosts);
-      response.status === 200 && setSuccessful(!successful);
+      response.status === 200 && setSuccessful(true);
     } catch (error) {
       toast.error(error.message);
     }
@@ -40,7 +40,12 @@ const Home = ({ setPostId }) => {
       ) : (
         <>
           <div>
-            <AsideWidget filter={filter} setFilter={setFilter} />
+            <AsideWidget
+              filter={filter}
+              showModal={showModal}
+              SetShowModal={SetShowModal}
+              setFilter={setFilter}
+            />
           </div>
           <div>
             <Widget sort={sort} setSort={setSort} />
@@ -56,6 +61,8 @@ const Home = ({ setPostId }) => {
                       setReload={setReload}
                       reload={reload}
                       setPostId={setPostId}
+                      successful={successful}
+                      setSuccessful={setSuccessful}
                     />
                   );
                 })

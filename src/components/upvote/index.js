@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 import feedbackApp from "../../api/feedbackApp";
-const Upvote = ({ post, setReload, reload }) => {
+const Upvote = ({ post, setReload, reload, successful, setSuccessful }) => {
   const state = useSelector((state) => state);
   const accessToken = state?.auth?.profile?.accessToken;
   const handleUpvote = async (post) => {
@@ -18,6 +18,7 @@ const Upvote = ({ post, setReload, reload }) => {
         }
       );
       setReload(!reload);
+      setSuccessful(successful);
     } catch (err) {
       toast.error("upvote failed");
     }

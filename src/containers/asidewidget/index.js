@@ -6,7 +6,7 @@ import ConnectBtn from "../../components/ConnectBtn";
 import LoginConnect from "../../components/loginBtnConnector";
 import RoadMap from "../../components/roadmap";
 import { motion } from "framer-motion";
-const AsideWidget = ({ filter, setFilter }) => {
+const AsideWidget = ({ filter, setFilter, showModal, SetShowModal }) => {
   const variants = {
     open: { opacity: 1, x: 0 },
     closed: { opacity: 0, x: "-100%" },
@@ -31,7 +31,7 @@ const AsideWidget = ({ filter, setFilter }) => {
       <div className="bigScreen">
         <div className="flex-col">
           <div className="login">
-            <LoginConnect />
+            <LoginConnect showModal={showModal} SetShowModal={SetShowModal} />
           </div>
           <Banner
             style={{
@@ -39,7 +39,7 @@ const AsideWidget = ({ filter, setFilter }) => {
             }}
           >
             <span>
-              <h1>Frontend Mentor</h1>
+              <h1>Review Rabbit</h1>
               <span>Feedback Board</span>
             </span>
           </Banner>
@@ -63,7 +63,7 @@ const AsideWidget = ({ filter, setFilter }) => {
           }}
         >
           <span>
-            <h1>Frontend Mentor</h1>
+            <h1>Review Rabbit</h1>
             <span>Feedback Board</span>
           </span>
         </Banner>
@@ -85,7 +85,10 @@ const AsideWidget = ({ filter, setFilter }) => {
           <MenuWrapper>
             <div className="flex-col">
               <div className="login">
-                <LoginConnect />
+                <LoginConnect
+                  showModal={showModal}
+                  SetShowModal={SetShowModal}
+                />
               </div>
             </div>
             <CategoryWidget filter={filter} setFilter={setFilter} />

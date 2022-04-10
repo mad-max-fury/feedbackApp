@@ -13,15 +13,28 @@ import FeedBackDetails from "./pages/feedbackdetails";
 import { ToastContainer, toast, Zoom, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
+import EditProfile from "./containers/Editprofile";
 
 function App() {
   const [postId, setPostId] = useState(null);
+  const [showModal, SetShowModal] = useState(false);
   return (
     <div className="App">
       <ToastContainer />
+      <EditProfile showModal={showModal} SetShowModal={SetShowModal} />
       <Router>
         <Routes>
-          <Route path="/" exact element={<Home setPostId={setPostId} />} />
+          <Route
+            path="/"
+            exact
+            element={
+              <Home
+                showModal={showModal}
+                SetShowModal={SetShowModal}
+                setPostId={setPostId}
+              />
+            }
+          />
           <Route path="/roadmap" element={<RoadMapInnerPage />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />

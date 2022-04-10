@@ -5,12 +5,14 @@ import { toast } from "react-toastify";
 import styled from "styled-components";
 import feedbackApp from "../../api/feedbackApp";
 import { colors } from "../../colors";
+import EditProfile from "../../containers/Editprofile";
 import { handleLogout } from "../../redux/action";
 
-const LoginConnect = () => {
+const LoginConnect = ({ showModal, SetShowModal }) => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showMiniModal, setShowMiniModal] = useState(false);
+
   const handleSignInPage = () => {
     navigate("/signin");
   };
@@ -20,8 +22,6 @@ const LoginConnect = () => {
   const accessToken = state?.auth?.profile?.accessToken;
 
   const Logout = async () => {
-    // window.localStorage.removeItem("myStore");
-    // window.location.reload();
     try {
       const res = await feedbackApp.get("/users/logout", {
         headers: {
@@ -31,7 +31,7 @@ const LoginConnect = () => {
       setTimeout(() => {
         toast.success("see Ya, come back quickly for more feed", {
           position: "top-center",
-          autoClose: 10000,
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -77,7 +77,10 @@ const LoginConnect = () => {
             {showMiniModal ? (
               <MiniModal onClick={() => setShowMiniModal(false)}>
                 <button onClick={Logout}>logout</button>
-                <button> Edit profile</button>
+                <button onClick={() => SetShowModal(!showModal)}>
+                  {" "}
+                  Edit profile
+                </button>
               </MiniModal>
             ) : null}
           </Wrap>

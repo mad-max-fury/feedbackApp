@@ -5,7 +5,7 @@ import { colors } from "../../colors";
 import FeedBackMessage from "../../components/message";
 import Upvote from "../../components/upvote";
 import { motion } from "framer-motion";
-const Feedback = ({ post, setReload, reload }) => {
+const Feedback = ({ post, setReload, reload, successful, setSuccessful }) => {
   // console.log(post);
   const navigate = useNavigate();
   const handleFeedDetails = () => {
@@ -15,7 +15,13 @@ const Feedback = ({ post, setReload, reload }) => {
   return (
     <FeedbackWrapper>
       <div className="firstWrap">
-        <Upvote post={post} setReload={setReload} reload={reload} />
+        <Upvote
+          post={post}
+          setReload={setReload}
+          successful={successful}
+          setSuccessful={setSuccessful}
+          reload={reload}
+        />
         <FeedBackMessage
           post={post}
           handleFeedDetails={handleFeedDetails}
