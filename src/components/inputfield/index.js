@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { colors } from "../../colors";
 
-const InputField = ({ type, placeholder, functionName }) => {
+const InputField = ({ type, placeholder, functionName, disabled }) => {
   const [value, setValue] = useState("");
 
   const handleChange = ({ target }) => {
@@ -19,6 +19,7 @@ const InputField = ({ type, placeholder, functionName }) => {
           onChange={handleChange}
           value={value}
           className="input"
+          disabled={disabled}
         />
       ) : (
         <textarea

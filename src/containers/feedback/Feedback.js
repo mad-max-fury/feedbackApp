@@ -64,10 +64,12 @@ const FeedbackWrapper = styled.div`
       flex-direction: column-reverse;
     }
   }
-  &:hover {
-    transition: all 0.1s;
-    //  padding:.8rem;
+  transition: all 0.3s ease-in-out;
+
+  &: hover {
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    transform: scale(0.96);
   }
 `;
 const CommentCount = styled.div`

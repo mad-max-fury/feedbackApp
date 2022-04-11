@@ -6,35 +6,80 @@ import {
   ListboxOption,
 } from "@reach/listbox";
 import "@reach/listbox/styles.css";
+import { useState } from "react";
 
-import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { colors } from "../../colors";
 
-const Container = styled.div`
+export const Container = styled.div`
   display: flex;
   align-items: center;
   gap: 4px;
-`;
-
-const MenuList = styled(ListboxButton)`
-  border: none;
-`;
-
-const PopOver = styled(ListboxPopover)`
-  background: #ffffff;
-  border-radius: 10px;
-  margin-top: 32px;
-  box-shadow: 0px 10px 40px -7px rgba(55, 63, 104, 0.350492);
-  border: none;
-  > [data-reach-listbox-list] {
-    width: 255px;
-    outline: none;
-    border: none;
-    > [data-reach-listbox-option] {
-      border-bottom: 1px rgba(58, 67, 116, 0.15) solid;
-      padding: 8px;
+  width: fit-content;
+  flex-direction: column;
+  align-items: start;
+  & > div {
+    width: 100% !important;
+  }
+  > span {
+    font-weight: 700;
+    font-size: 20px;
+    color: ${colors.chinese_black};
+    @media (max-width: 768px) {
+      font-size: 1rem;
     }
   }
+`;
+
+export const MenuList = styled(ListboxButton)`
+  transition: all 0.3s ease-in-out;
+  width: fit-content;
+  height: fit-content;
+  padding: 0.5rem;
+  font-size: 16px;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 10px;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+`;
+
+export const PopOver = styled(ListboxPopover)`
+  transition: all 0.3s ease-in-out;
+  background: #ffffff;
+  position: absolute;
+  bottom: 12%;
+  box-shadow: 0px 10px 40px -7px ${colors.secondary_color};
+  height: fit-content;
+  border-radius: 15px;
+  border: none !important;
+  outline: none !important;
+  > [data-reach-listbox-list] {
+    width: calc(100% - 2rem);
+    outline: none;
+    padding: 1rem;
+    border: none;
+    border-radius: 15px;
+
+    > [data-reach-listbox-option] {
+      border-bottom: 1px solid rgba(58, 67, 116, 0.15);
+      padding: 8px;
+      border-radius: 15px;
+      transition: all 0.5s ease-in-out;
+
+      &:last-of-type {
+        border-bottom: unset;
+      }
+      &:hover {
+        transition: all 0.5s ease-in-out;
+        background: ${colors.primary_cadium_violet};
+      }
+    }
+  }
+`;
+export const ListboxI = styled(ListboxList)`
+  border: 1px solid red !important;
 `;
 
 const Dropdown = ({ sort, setSort, style }) => {
@@ -46,7 +91,11 @@ const Dropdown = ({ sort, setSort, style }) => {
 
   return (
     <Container style={style ? style : null}>
-      <ListboxInput value={value} onChange={handleChange}>
+      <ListboxInput
+        aria-labelledby="my-label"
+        value={value}
+        onChange={handleChange}
+      >
         <MenuList arrow />
         <PopOver>
           <ListboxList>
