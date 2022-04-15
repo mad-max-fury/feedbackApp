@@ -97,6 +97,7 @@ const EditProfileWrap = styled.div`
   background: rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease-in-out;
   opacity: 1;
+  transform: scale(1);
 
   ${({ showModal }) =>
     !showModal &&
@@ -104,6 +105,7 @@ const EditProfileWrap = styled.div`
     transition: all 0.3s ease-in-out;
     opacity:0;
     z-index:-20;
+    transform: scale(0);
   
     `}
 `;
@@ -223,7 +225,7 @@ const Container = styled.div`
   margin: auto;
   box-shadow: 0 0 5px #c4c4c4;
   transition: all 0.3s ease-in-out;
-  transform: translateY(0);
+  transform: scale(1);
   transition-delay: 0.3s;
 
   ${({ showModal }) =>
@@ -232,7 +234,7 @@ const Container = styled.div`
   transition-delay: 0.3s;
 
     transition: all 0.3s ease-in-out;
-    transform: translateY(-200%);
+    transform: scale(0);
  
     `}
   @media (max-width: 768px) {

@@ -107,7 +107,7 @@ const MiniModal = styled.div`
   background-color: #fff;
   position: absolute;
 
-  bottom: 80%;
+  bottom: 70%;
   box-shadow: 0 0 4px grey;
   display: flex;
   flex-flow: column;
