@@ -134,6 +134,7 @@ const AsideWidgetWrap = styled(motion.aside)`
     justify-content: space-between;
     padding: 0 1rem;
     height: fit-content;
+
     background: radial-gradient(
       128.88% 128.88% at 103.9% -10.39%,
       rgb(232, 77, 112) 0%,

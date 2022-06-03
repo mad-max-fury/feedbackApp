@@ -66,7 +66,7 @@ const FeedbackWrapper = styled.div`
   }
   transition: all 0.3s ease-in-out;
 
-  &: hover {
+  &:hover {
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     transform: scale(0.96);

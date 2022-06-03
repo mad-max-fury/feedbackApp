@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import feedbackApp from "../../api/feedbackApp";
 import { Puff } from "react-loader-spinner";
+import EmptyState from "../../components/emptyState";
 
 const Home = ({ setPostId, showModal, SetShowModal }) => {
   const dispatch = useDispatch();
@@ -51,7 +52,10 @@ const Home = ({ setPostId, showModal, SetShowModal }) => {
             <Widget sort={sort} setSort={setSort} />
             <div className="feedContainer">
               {postFeeds?.length < 1 ? (
-                <div style={{ margin: "auto", fontSize: "27px" }}>no Post</div>
+                <div style={{ margin: "auto", fontSize: "27px" }}>
+                  {" "}
+                  <EmptyState />
+                </div>
               ) : (
                 [...postFeeds].map((el) => {
                   return (
