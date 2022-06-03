@@ -62,14 +62,14 @@ const Comment = ({ el, reload, postId, setReload }) => {
               </div>
               <div className="username">
                 <h5>{el?.authorName}</h5>
-                <p>@madmaxfury</p>
+                <p>@{el?.authorUserName}</p>
               </div>
             </div>
             <div className="usermessage">
               <p>{el?.comment}</p>
             </div>
           </div>
-          {state?.auth?.profile?.userId && (
+          {state?.auth?.profile?.userId ? (
             <div>
               <span title="reply" onClick={() => setMakeReply(!makeReply)}>
                 ↩
@@ -82,6 +82,8 @@ const Comment = ({ el, reload, postId, setReload }) => {
                 ></i>
               )}
             </div>
+          ) : (
+            <div></div>
           )}
           {makeReply && (
             <form onSubmit={handleReply}>
@@ -108,7 +110,7 @@ const Comment = ({ el, reload, postId, setReload }) => {
                     </div>
                     <div className="username">
                       <h5>{re?.authorName}</h5>
-                      <p>@madmaxfury</p>
+                      <p>@{re?.authorUserName}</p>
                     </div>
                   </div>
                   <div className="usermessage">
@@ -128,7 +130,7 @@ export default Comment;
 const ReplyWrap = styled.div`
   width: 90%;
   margin-left: 4vw;
-  // border: 1px solid red;
+  //border: 1px solid red;
   display: flex !important;
   flex-direction: column !important;
   gap: 0.2rem;
@@ -183,7 +185,7 @@ const BtnWrap = styled.button`
     props.clr ? `${colors.grey_text}` : `${colors.secondary_color}`};
   max-width: fit-content;
   height: 3rem;
-  padding: 0rem 0.8rem;
+  padding: 0rem 20px;
   border-radius: 10px;
   font-size: 20px;
   font-weight: normal;
@@ -193,8 +195,7 @@ const BtnWrap = styled.button`
   }
   &:hover {
     transition: all 0.2s ease-in;
-    padding: 0 1rem;
-    height: 2.8rem;
+    cursor: pointer;
     background: "#c75af6";
   }
   @media (min-width: 768px) {
@@ -214,6 +215,15 @@ const CommentMessage = styled.div`
     & > form {
       transition: all 0.2s ease-in;
       padding-bottom: 1rem;
+      display: flex;
+      & > div {
+        height: 5rem;
+        width: 80% !important;
+        & textarea {
+          width: 90% !important;
+          max-height: 3rem;
+        }
+      }
       @media (min-width: 768px) {
         flex-flow: row;
         & > div {
@@ -224,7 +234,7 @@ const CommentMessage = styled.div`
         }
       }
       // border: 1px solid red;
-      width: 80%;
+      width: 90%;
       gap: 1rem;
       margin: auto;
       align-self: flex-end;

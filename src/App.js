@@ -1,16 +1,10 @@
 import "./App.css";
 import { Home, SignUp, SignIn } from "./pages/index";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-  resolvePath,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import RoadMapInnerPage from "./pages/roadmapinnerpage";
 import CreateFeed from "./containers/createfeed";
 import FeedBackDetails from "./pages/feedbackdetails";
-import { ToastContainer, toast, Zoom, Bounce } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import EditProfile from "./containers/Editprofile";

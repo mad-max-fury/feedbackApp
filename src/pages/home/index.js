@@ -50,7 +50,13 @@ const Home = ({ setPostId, showModal, SetShowModal }) => {
           </div>
           <div>
             <Widget sort={sort} setSort={setSort} />
-            <div className="feedContainer">
+            <motion.div
+              initial={{ y: "10vh", opacity: 0 }}
+              transition={{ delay: 0.1, type: "spring", duration: 1 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: "10vh", opacity: 0 }}
+              className="feedContainer"
+            >
               {postFeeds?.length < 1 ? (
                 <div style={{ margin: "auto", fontSize: "27px" }}>
                   {" "}
@@ -71,7 +77,7 @@ const Home = ({ setPostId, showModal, SetShowModal }) => {
                   );
                 })
               )}
-            </div>
+            </motion.div>
           </div>
         </>
       )}
